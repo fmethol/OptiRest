@@ -3,25 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OptiRest.Data;
 using OptiRest.Models;
+using OptiRest.Models.Dtos;
+using OptiRest.Service.Interfaces;
 using System.Security.AccessControl;
 
-namespace OptiRest.Controllers
+namespace OptiRest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PlatoController : ControllerBase
     {
-        private readonly AppDbContext _db;
+        private readonly IPlatoService _platoService;
 
-        public PlatoController(AppDbContext db)
+        public PlatoController(IPlatoService platoService)
         {
-            _db = db;
+            _platoService = platoService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPlatos()
         {
-            var lista = await _db.Platos.OrderBy(c => c.Nombre).ToListAsync();
+            var lista = await _platoService.GetPlatos();
 
             return Ok(lista);
         }
@@ -29,7 +31,7 @@ namespace OptiRest.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetPlato(int id)
         {
-            var plato = await _db.Platos.FirstOrDefaultAsync(c => c.Id == id);
+            var plato = await _platoService.GetPlato(id);
 
             if(plato == null)
             {
@@ -40,7 +42,7 @@ namespace OptiRest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearPlato([FromBody] Plato plato)
+        public async Task<IActionResult> CreatePlato([FromBody] PlatoDto plato)
         {
             if (plato == null)
             {
@@ -52,52 +54,26 @@ namespace OptiRest.Controllers
                 return BadRequest(ModelState);
             }
 
-            await _db.AddAsync(plato);
-            await _db.SaveChangesAsync();
+            var createdPlato = await _platoService.CreatePlato(plato);
 
-            return Ok();
+            return Ok(createdPlato);
         }
 
         [HttpPut]
-        public async Task<IActionResult> ActualizarPlato(Plato request)
+        public async Task<IActionResult> UpdatePlato(PlatoDto request)
         {
 
-            var plato = await _db.Platos.FirstOrDefaultAsync(c => c.Id == request.Id);
-
-            if (plato == null)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            plato.Nombre = request.Nombre;
-            plato.Descripcion = request.Descripcion;
-            plato.Precio = request.Precio;
-
-            await _db.SaveChangesAsync();
+            var plato = await _platoService.UpdatePlato(request);
 
             return Ok(plato);
         }
 
-
-        
         [HttpDelete]
-        public async Task<IActionResult> BorrarPlato(int id)
+        public async Task<IActionResult> DeletePlato(int id)
         {
-            var plato = await _db.Platos.FirstOrDefaultAsync(c => c.Id == id);
+            var resultId = _platoService.DeletePlato(id);
 
-            if(plato == null)
-            {
-                return NotFound();
-            }
-
-            _db.Platos.Remove(plato);
-            await _db.SaveChangesAsync();
-            return Ok("Plato Eliminado");
+            return Ok(resultId);
         }
     }
 }
