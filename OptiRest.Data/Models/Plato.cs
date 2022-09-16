@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OptiRest.Models
+namespace OptiRest.Data.Models
 {
     public class Plato
     {

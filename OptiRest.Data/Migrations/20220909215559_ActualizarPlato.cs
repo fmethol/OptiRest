@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace OptiRest.Migrations
+namespace OptiRest.Data.Migrations
 {
     public partial class ActualizarPlato : Migration
     {

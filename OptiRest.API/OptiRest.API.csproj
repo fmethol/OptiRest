@@ -16,4 +16,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OptiRest.Ioc\OptiRest.Ioc.csproj" />
+    <ProjectReference Include="..\OptiRest.Models\OptiRest.Models.csproj" />
+    <ProjectReference Include="..\OptiRest.Service\OptiRest.Service.csproj" />
+  </ItemGroup>
+
 </Project>
