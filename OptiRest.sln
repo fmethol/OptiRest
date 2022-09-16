@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptiRest", "OptiRest.csproj", "{ACD000C8-1107-4175-876B-26C5F276009F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptiRest.API", "OptiRest.API\OptiRest.API.csproj", "{ACD000C8-1107-4175-876B-26C5F276009F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptiRest.Data", "OptiRest.Data\OptiRest.Data.csproj", "{12CE9312-2F11-4118-B413-DE8F1204FC5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptiRest.Service", "OptiRest.Service\OptiRest.Service.csproj", "{757F80DA-4208-4AD3-85E9-8501B88E4129}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptiRest.Models", "OptiRest.Models\OptiRest.Models.csproj", "{56F098C8-D31E-4715-A66F-16093D52759C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptiRest.Ioc", "OptiRest.Ioc\OptiRest.Ioc.csproj", "{66E67D45-84E5-45A1-9CDF-FDEC76B21267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{ACD000C8-1107-4175-876B-26C5F276009F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACD000C8-1107-4175-876B-26C5F276009F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACD000C8-1107-4175-876B-26C5F276009F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12CE9312-2F11-4118-B413-DE8F1204FC5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12CE9312-2F11-4118-B413-DE8F1204FC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12CE9312-2F11-4118-B413-DE8F1204FC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12CE9312-2F11-4118-B413-DE8F1204FC5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757F80DA-4208-4AD3-85E9-8501B88E4129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757F80DA-4208-4AD3-85E9-8501B88E4129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757F80DA-4208-4AD3-85E9-8501B88E4129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757F80DA-4208-4AD3-85E9-8501B88E4129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F098C8-D31E-4715-A66F-16093D52759C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F098C8-D31E-4715-A66F-16093D52759C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F098C8-D31E-4715-A66F-16093D52759C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F098C8-D31E-4715-A66F-16093D52759C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E67D45-84E5-45A1-9CDF-FDEC76B21267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E67D45-84E5-45A1-9CDF-FDEC76B21267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E67D45-84E5-45A1-9CDF-FDEC76B21267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E67D45-84E5-45A1-9CDF-FDEC76B21267}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OptiRest.Models;
+using OptiRest.Data.Models;
 
-namespace OptiRest.Data
+namespace OptiRest.Data.Context
 {
     public class AppDbContext: DbContext
     {
