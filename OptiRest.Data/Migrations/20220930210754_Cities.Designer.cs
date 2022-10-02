@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OptiRest.Data.Context;
 
@@ -10,9 +11,10 @@ using OptiRest.Data.Context;
 namespace OptiRest.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220930210754_Cities")]
+    partial class Cities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,68 +22,6 @@ namespace OptiRest.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("OptiRest.Data.Models.Area", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Length")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Summary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Areas");
-                });
-
-            modelBuilder.Entity("OptiRest.Data.Models.BusinessConfig", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Logo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slogan")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Summary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BusinessConfigs");
-                });
 
             modelBuilder.Entity("OptiRest.Data.Models.City", b =>
                 {
@@ -102,7 +42,7 @@ namespace OptiRest.Data.Migrations
 
                     b.HasIndex("stateId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
 
                     b.HasData(
                         new
@@ -409,25 +349,25 @@ namespace OptiRest.Data.Migrations
 
             modelBuilder.Entity("OptiRest.Data.Models.Country", b =>
                 {
-                    b.Property<int>("CountryId")
+                    b.Property<int>("countryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("countryId"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CountryId");
+                    b.HasKey("countryId");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Country");
 
                     b.HasData(
                         new
                         {
-                            CountryId = 1,
-                            Name = "Argentina"
+                            countryId = 1,
+                            country = "Argentina"
                         });
                 });
 
@@ -497,169 +437,169 @@ namespace OptiRest.Data.Migrations
 
             modelBuilder.Entity("OptiRest.Data.Models.State", b =>
                 {
-                    b.Property<int>("StateId")
+                    b.Property<int>("stateId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StateId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("stateId"), 1L, 1);
 
-                    b.Property<int>("CountryId")
+                    b.Property<int>("countryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("state")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StateId");
+                    b.HasKey("stateId");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("countryId");
 
-                    b.ToTable("States");
+                    b.ToTable("State");
 
                     b.HasData(
                         new
                         {
-                            StateId = 1,
-                            CountryId = 1,
-                            Name = "Buenos Aires"
+                            stateId = 1,
+                            countryId = 1,
+                            state = "Buenos Aires"
                         },
                         new
                         {
-                            StateId = 5,
-                            CountryId = 1,
-                            Name = "Ciudad Autónoma de Buenos Aires"
+                            stateId = 5,
+                            countryId = 1,
+                            state = "Ciudad Autónoma de Buenos Aires"
                         },
                         new
                         {
-                            StateId = 2,
-                            CountryId = 1,
-                            Name = "Catamarca"
+                            stateId = 2,
+                            countryId = 1,
+                            state = "Catamarca"
                         },
                         new
                         {
-                            StateId = 3,
-                            CountryId = 1,
-                            Name = "Chaco"
+                            stateId = 3,
+                            countryId = 1,
+                            state = "Chaco"
                         },
                         new
                         {
-                            StateId = 4,
-                            CountryId = 1,
-                            Name = "Chubut"
+                            stateId = 4,
+                            countryId = 1,
+                            state = "Chubut"
                         },
                         new
                         {
-                            StateId = 6,
-                            CountryId = 1,
-                            Name = "Córdoba"
+                            stateId = 6,
+                            countryId = 1,
+                            state = "Córdoba"
                         },
                         new
                         {
-                            StateId = 7,
-                            CountryId = 1,
-                            Name = "Corrientes"
+                            stateId = 7,
+                            countryId = 1,
+                            state = "Corrientes"
                         },
                         new
                         {
-                            StateId = 8,
-                            CountryId = 1,
-                            Name = "Entre Ríos"
+                            stateId = 8,
+                            countryId = 1,
+                            state = "Entre Ríos"
                         },
                         new
                         {
-                            StateId = 9,
-                            CountryId = 1,
-                            Name = "Formosa"
+                            stateId = 9,
+                            countryId = 1,
+                            state = "Formosa"
                         },
                         new
                         {
-                            StateId = 10,
-                            CountryId = 1,
-                            Name = "Jujuy"
+                            stateId = 10,
+                            countryId = 1,
+                            state = "Jujuy"
                         },
                         new
                         {
-                            StateId = 11,
-                            CountryId = 1,
-                            Name = "La Pampa"
+                            stateId = 11,
+                            countryId = 1,
+                            state = "La Pampa"
                         },
                         new
                         {
-                            StateId = 12,
-                            CountryId = 1,
-                            Name = "La Rioja"
+                            stateId = 12,
+                            countryId = 1,
+                            state = "La Rioja"
                         },
                         new
                         {
-                            StateId = 13,
-                            CountryId = 1,
-                            Name = "Mendoza"
+                            stateId = 13,
+                            countryId = 1,
+                            state = "Mendoza"
                         },
                         new
                         {
-                            StateId = 14,
-                            CountryId = 1,
-                            Name = "Misiones"
+                            stateId = 14,
+                            countryId = 1,
+                            state = "Misiones"
                         },
                         new
                         {
-                            StateId = 15,
-                            CountryId = 1,
-                            Name = "Neuquén"
+                            stateId = 15,
+                            countryId = 1,
+                            state = "Neuquén"
                         },
                         new
                         {
-                            StateId = 16,
-                            CountryId = 1,
-                            Name = "Río Negro"
+                            stateId = 16,
+                            countryId = 1,
+                            state = "Río Negro"
                         },
                         new
                         {
-                            StateId = 17,
-                            CountryId = 1,
-                            Name = "Salta"
+                            stateId = 17,
+                            countryId = 1,
+                            state = "Salta"
                         },
                         new
                         {
-                            StateId = 18,
-                            CountryId = 1,
-                            Name = "San Juan"
+                            stateId = 18,
+                            countryId = 1,
+                            state = "San Juan"
                         },
                         new
                         {
-                            StateId = 19,
-                            CountryId = 1,
-                            Name = "San Luis"
+                            stateId = 19,
+                            countryId = 1,
+                            state = "San Luis"
                         },
                         new
                         {
-                            StateId = 20,
-                            CountryId = 1,
-                            Name = "Santa Cruz"
+                            stateId = 20,
+                            countryId = 1,
+                            state = "Santa Cruz"
                         },
                         new
                         {
-                            StateId = 21,
-                            CountryId = 1,
-                            Name = "Santa Fe"
+                            stateId = 21,
+                            countryId = 1,
+                            state = "Santa Fe"
                         },
                         new
                         {
-                            StateId = 22,
-                            CountryId = 1,
-                            Name = "Santiago del Estero"
+                            stateId = 22,
+                            countryId = 1,
+                            state = "Santiago del Estero"
                         },
                         new
                         {
-                            StateId = 23,
-                            CountryId = 1,
-                            Name = "Tierra del Fuego"
+                            stateId = 23,
+                            countryId = 1,
+                            state = "Tierra del Fuego"
                         },
                         new
                         {
-                            StateId = 24,
-                            CountryId = 1,
-                            Name = "Tucumán"
+                            stateId = 24,
+                            countryId = 1,
+                            state = "Tucumán"
                         });
                 });
 
@@ -687,90 +627,6 @@ namespace OptiRest.Data.Migrations
                     b.ToTable("TakedRanges");
                 });
 
-            modelBuilder.Entity("OptiRest.Data.Models.Tenant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BusinessName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Web")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tenants");
-                });
-
-            modelBuilder.Entity("OptiRest.Data.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstNames")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("OptiRest.Data.Models.City", b =>
                 {
                     b.HasOne("OptiRest.Data.Models.State", null)
@@ -784,7 +640,7 @@ namespace OptiRest.Data.Migrations
                 {
                     b.HasOne("OptiRest.Data.Models.Country", null)
                         .WithMany("States")
-                        .HasForeignKey("CountryId")
+                        .HasForeignKey("countryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -15,6 +15,18 @@ namespace OptiRest.Ioc
 
             // Add Services
             services.AddTransient<IPlatoService, PlatoService>();
+            services.AddTransient<ITakedRangeService, TakedRangeService>();
+            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<IStateService, StateService>();
+            services.AddTransient<ITenantService, TenantService>();
+            services.AddTransient<IBusinessConfigService, BusinessConfigService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAreaService, AreaService>();
+
+
+
+
         }
     }
 }
