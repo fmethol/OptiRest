@@ -34,6 +34,11 @@ namespace OptiRest.Service.Services
         {
             var plato = _db.Platos.FirstOrDefault(p => p.Id == id);
 
+            if (plato == null)
+            {
+                return null;
+            }
+
             var platoDto = new PlatoDto
             {
                 Id = plato.Id,
@@ -45,25 +50,27 @@ namespace OptiRest.Service.Services
             return await Task.FromResult(platoDto);
         }
 
-        public async Task<PlatoDto> CreatePlato(PlatoDto plato)
+        public async Task<PlatoDto> CreatePlato(PlatoDto platoDto)
         {
-            if (plato == null)
+            if (platoDto == null)
             {
                 return null;
             }
 
+            var plato = new Plato
+            {
+                Id = platoDto.Id,
+                Nombre = platoDto.Nombre,
+                Descripcion = platoDto.Descripcion,
+                Precio = platoDto.Precio
+            };
+
             await _db.AddAsync(plato);
             await _db.SaveChangesAsync();
 
-            //var platoDto = new PlatoDto
-            //{
-            //    Id = plato.Id,
-            //    Nombre = plato.Nombre,
-            //    Descripcion = plato.Descripcion,
-            //    Precio = plato.Precio
-            //};
+            platoDto.Id = plato.Id;
 
-            return plato;
+            return platoDto;
         }
 
         public async Task<PlatoDto> UpdatePlato(PlatoDto request)

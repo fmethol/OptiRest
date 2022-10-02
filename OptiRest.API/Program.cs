@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using OptiRest.Data;
 using OptiRest.Ioc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 internal class Program
 {
