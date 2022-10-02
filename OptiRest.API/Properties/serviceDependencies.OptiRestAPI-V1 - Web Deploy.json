@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "apis2": {
+      "apiEndpoint": "https://optirestapi-apimanagement.azure-api.net/v1",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/OptiRestAPI-apimanagement/apis/optirest-api",
+      "type": "apis.azure"
+    },
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/optirestdbserver/databases/OptiRest",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "dynamicId": null
+    }
+  }
+}
