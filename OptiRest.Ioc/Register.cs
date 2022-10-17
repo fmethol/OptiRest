@@ -14,18 +14,23 @@ namespace OptiRest.Ioc
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
             // Add Services
-            services.AddTransient<IPlatoService, PlatoService>();
             services.AddTransient<ITakedRangeService, TakedRangeService>();
             services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IItemCategoryService, ItemCategoryService>();
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IStateService, StateService>();
             services.AddTransient<ITenantService, TenantService>();
             services.AddTransient<IBusinessConfigService, BusinessConfigService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAreaService, AreaService>();
-
-
-
+            services.AddTransient<ITableService, TableService>();
+            services.AddTransient<ITableShapeService, TableShapeService>();
+            services.AddTransient<ITableStateService, TableStateService>();
+            services.AddTransient<ITableServiceService, TableServiceService>();
+            services.AddTransient<IServiceStateService, ServiceStateService>();
+            services.AddTransient<IDinerUserService, DinerUserService>();
+            services.AddTransient<ITableService2ItemService, TableService2ItemService>();
+            services.AddTransient<IKitchenService, KitchenService>();
 
         }
     }

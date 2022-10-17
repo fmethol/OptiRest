@@ -24,7 +24,7 @@ namespace OptiRest.Service.Services
                     Id = s.StateId,
                     Name = s.Name,
                     CountryId = s.CountryId,
-                    Cities = s.Cities
+                    //Cities = s.Cities
                 })
             .ToListAsync();
 
@@ -34,7 +34,7 @@ namespace OptiRest.Service.Services
         public async Task<StateDto> GetState(int id)
         {
           
-            var state = _db.States.FirstOrDefault(s => s.StateId == id);
+            var state = _db.States.Include(s => s.Cities).FirstOrDefault(s => s.StateId == id);
 
             if (state == null)
             {

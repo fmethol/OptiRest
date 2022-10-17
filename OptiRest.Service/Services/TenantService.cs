@@ -33,7 +33,8 @@ namespace OptiRest.Service.Services
                     CityId = t.CityId,
                     Email = t.Email,
                     Web = t.Web,
-                    Phone = t.Phone
+                    Phone = t.Phone,
+                    BusinessConfig = t.BusinessConfig
                 }).ToListAsync();
 
             return tenants;
@@ -42,7 +43,7 @@ namespace OptiRest.Service.Services
         public async Task<TenantDto> GetTenant(int id)
         {
 
-            var tenant =  _db.Tenants.FirstOrDefault(t => t.Id == id);
+            var tenant =  _db.Tenants.Include(t => t.BusinessConfig).FirstOrDefault(t => t.Id == id);
 
             if (tenant == null)
             {
@@ -59,7 +60,8 @@ namespace OptiRest.Service.Services
                 CityId = tenant.CityId,
                 Email = tenant.Email,
                 Web = tenant.Web,
-                Phone = tenant.Phone
+                Phone = tenant.Phone,
+                BusinessConfig = tenant.BusinessConfig
             };
 
             return await Task.FromResult(tenantDto);

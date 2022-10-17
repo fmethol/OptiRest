@@ -25,28 +25,28 @@ namespace OptiRest.Service.Services
 
             var item = new Item
             {
-                tenantId = itemDto.tenantId,
-                code = itemDto.code,
-                categoryId = itemDto.categoryId,
-                kitchenId = itemDto.kitchenId,
-                title = itemDto.title,
-                summary = itemDto.summary,
-                price = itemDto.price,
-                active = itemDto.active
+                TenantId = itemDto.TenantId,
+                Code = itemDto.Code,
+                ItemCategoryId = itemDto.ItemCategoryId,
+                KitchenId = itemDto.KitchenId,
+                Title = itemDto.Title,
+                Summary = itemDto.Summary,
+                Price = itemDto.Price,
+                Active = itemDto.Active
             };
 
             await _db.AddAsync(item);
             await _db.SaveChangesAsync();
 
-            itemDto.id = item.id;
-
+            itemDto.Id = item.Id;
+            
             return itemDto;
 
         }
 
         public async Task<int> DeleteItem(int id)
         {
-            var item = await _db.Items.FirstOrDefaultAsync(c => c.id == id);
+            var item = await _db.Items.FirstOrDefaultAsync(c => c.Id == id);
 
             if (item == null)
             {
@@ -56,25 +56,25 @@ namespace OptiRest.Service.Services
             _db.Items.Remove(item);
             await _db.SaveChangesAsync();
 
-            return item.id;
+            return item.Id;
 
         }
 
         public async Task<ItemDto> GetItem(int id)
         {
-            var item = _db.Items.FirstOrDefault(p => p.id == id);
+            var item = _db.Items.FirstOrDefault(p => p.Id == id);
 
             var itemDto = new ItemDto
             {
-                id = item.id,
-                tenantId = item.tenantId,
-                code = item.code,
-                categoryId = item.categoryId,
-                kitchenId = item.kitchenId,
-                title = item.title,
-                summary = item.summary,
-                price = item.price,
-                active = item.active
+                Id = item.Id,
+                TenantId = item.TenantId,
+                Code = item.Code,
+                ItemCategoryId = item.ItemCategoryId,
+                KitchenId = item.KitchenId,
+                Title = item.Title,
+                Summary = item.Summary,
+                Price = item.Price,
+                Active = item.Active
             };
 
             return await Task.FromResult(itemDto);
@@ -86,15 +86,15 @@ namespace OptiRest.Service.Services
             var items = await _db.Items
                 .Select(p => new ItemDto
                 {
-                    id = p.id,
-                    tenantId = p.tenantId,
-                    code = p.code,
-                    categoryId = p.categoryId,
-                    kitchenId = p.kitchenId,
-                    title = p.title,
-                    summary = p.summary,
-                    price = p.price,
-                    active = p.active
+                    Id = p.Id,
+                    TenantId = p.TenantId,
+                    Code = p.Code,
+                    ItemCategoryId = p.ItemCategoryId,
+                    KitchenId = p.KitchenId,
+                    Title = p.Title,
+                    Summary = p.Summary,
+                    Price = p.Price,
+                    Active = p.Active
                 })
                 .ToListAsync();
 
@@ -103,20 +103,20 @@ namespace OptiRest.Service.Services
 
         public async Task<ItemDto> UpdateItem(ItemDto request)
         {
-            var item = await _db.Items.FirstOrDefaultAsync(c => c.id == request.id);
+            var item = await _db.Items.FirstOrDefaultAsync(c => c.Id == request.Id);
 
             if (item == null)
             {
                 return null;
             }
 
-            item.tenantId = request.tenantId;
-            item.code = request.code;
-            item.categoryId = request.categoryId;
-            item.kitchenId = request.kitchenId;
-            item.summary = request.summary;
-            item.price = request.price;
-            item.active = request.active;
+            item.TenantId = request.TenantId;
+            item.Code = request.Code;
+            item.ItemCategoryId = request.ItemCategoryId;
+            item.KitchenId = request.KitchenId;
+            item.Summary = request.Summary;
+            item.Price = request.Price;
+            item.Active = request.Active;
 
             await _db.SaveChangesAsync();
 

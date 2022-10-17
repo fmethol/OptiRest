@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OptiRest.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,16 @@ namespace OptiRest.Models.Dtos
 {
     public class ItemDto
     {
-        public int id { get; set; }
-        public int tenantId { get; set; }
-        public string code { get; set; }
-        public int categoryId { get; set; }
-        public int kitchenId { get; set; }
-        public string title { get; set; }
-        public string summary { get; set; }
-        public double price { get; set; }
-        public bool active { get; set; }
+        public int Id { get; set; }
+        public int TenantId { get; set; }
+        public string Code { get; set; }
+        public int ItemCategoryId { get; set; }
+        public int KitchenId { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
+        public double Price { get; set; }
+        public bool Active { get; set; }
+
+        public IEnumerable<TableService2Item>? TableService2Items { get; set; }
     }
 }

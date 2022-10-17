@@ -1,4 +1,5 @@
-﻿using OptiRest.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using OptiRest.Data.Context;
 using OptiRest.Data.Models;
 using OptiRest.Models.Dtos;
 using OptiRest.Service.Interfaces;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Table = OptiRest.Data.Models.Table;
 
 namespace OptiRest.Service.Services
 {
@@ -46,7 +48,7 @@ namespace OptiRest.Service.Services
 
         public async Task<int> DeleteArea(int id)
         {
-            var area = _db.Areas.FirstOrDefault(a => a.Id == id);
+            var area = _db.Areas.Include(a => a.Tables).FirstOrDefault(a => a.Id == id);
 
             if (area == null)
             {
@@ -57,9 +59,6 @@ namespace OptiRest.Service.Services
             await _db.SaveChangesAsync();
 
             return area.Id;
-
-
-
         }
 
         public async Task<AreaDto> GetArea(int id)
@@ -78,7 +77,8 @@ namespace OptiRest.Service.Services
                 Name = area.Name,
                 Width = area.Width,
                 Length = area.Length,
-                Summary = area.Summary
+                Summary = area.Summary,
+                Tables = area.Tables
             };
 
             return await Task.FromResult(areaDto);
@@ -86,32 +86,22 @@ namespace OptiRest.Service.Services
 
         public async Task<IEnumerable<AreaDto>> GetAreas(int tenantId)
         {
-            var areas = _db.Areas.Where(a => a.TenantId == tenantId).ToList();
 
-            if (areas == null)
-            {
-                return null;
-            }
-
-            var areaDtos = new List<AreaDto>();
-
-            foreach (var area in areas)
-            {
-                var areaDto = new AreaDto
+            var areas = await _db.Areas
+                .Where(a => a.TenantId == tenantId)
+                .Select(a => new AreaDto
                 {
-                    Id = area.Id,
-                    TenantId = area.TenantId,
-                    Name = area.Name,
-                    Width = area.Width,
-                    Length = area.Length,
-                    Summary = area.Summary
-                };
+                    Id = a.Id,
+                    TenantId = a.TenantId,
+                    Name = a.Name,
+                    Width = a.Width,
+                    Length = a.Length,
+                    Summary = a.Summary,
+                    Tables = a.Tables
+                })
+                .ToListAsync();
 
-                areaDtos.Add(areaDto);
-            }
-
-            return await Task.FromResult(areaDtos);
-                       
+            return areas;
         }
 
         public async Task<AreaDto> UpdateArea(AreaDto request)

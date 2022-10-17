@@ -19,5 +19,8 @@ namespace OptiRest.Data.Models
         public string LastName { get; set; }
         public int RoleId { get; set; }
         public bool Active { get; set; }
+
+        public List<Kitchen>? Kitchens { get; set; }
+        //public List<Table>? Tables { get; set; }
     }
 }

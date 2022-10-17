@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OptiRest.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace OptiRest.Models.Dtos
         public string Email { get; set; }
         public string Web { get; set; }
         public string Phone { get; set; }
+
+        public BusinessConfig? BusinessConfig { get; set; }
     }
 }

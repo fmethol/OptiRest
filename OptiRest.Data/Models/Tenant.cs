@@ -20,5 +20,7 @@ namespace OptiRest.Data.Models
         public string Web { get; set; }
         public string Phone { get; set; }
 
+        public BusinessConfig? BusinessConfig { get; set; }
+
     }
 }

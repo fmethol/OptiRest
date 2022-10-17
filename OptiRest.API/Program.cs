@@ -27,6 +27,10 @@ internal class Program
             });
         });
 
+        builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        );
+
 
 
         var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");

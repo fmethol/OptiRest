@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace OptiRest.Data.Models
@@ -10,15 +11,18 @@ namespace OptiRest.Data.Models
     public class Item
     {
         [Key]
-        public int id { get; set; }
-        public int tenantId { get; set; }
-        public string code { get; set; }
-        public int categoryId { get; set; }
-        public int kitchenId { get; set; }
-        public string title { get; set; }
-        public string summary { get; set; }
-        public double price { get; set; }
-        public bool active { get; set; }
-        
+        public int Id { get; set; }
+        public int TenantId { get; set; }
+        public string Code { get; set; }
+        public int ItemCategoryId { get; set; }
+        public int KitchenId { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
+        public double Price { get; set; }
+        public bool Active { get; set; }
+
+        [JsonIgnore]
+        public IEnumerable<TableService2Item>? TableService2Items { get; set; }
+
     }
 }

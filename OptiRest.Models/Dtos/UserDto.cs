@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OptiRest.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,7 @@ namespace OptiRest.Models.Dtos
         public string LastName { get; set; }
         public int RoleId { get; set; }
         public bool Active { get; set; }
+
+        public List<Kitchen>? Kitchens { get; set; }
     }
 }

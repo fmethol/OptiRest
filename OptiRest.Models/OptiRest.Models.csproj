@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dtos\PlatoDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OptiRest.Data\OptiRest.Data.csproj" />
   </ItemGroup>
 
