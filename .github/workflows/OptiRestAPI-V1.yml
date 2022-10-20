@@ -2,7 +2,7 @@ name: Compilar e implementar la aplicación de .NET Core en la aplicación web 
 on:
   push:
     branches:
-    - implement-ioc-2
+    - master
 env:
   AZURE_WEBAPP_NAME: OptiRestAPI-V1
   AZURE_WEBAPP_PACKAGE_PATH: OptiRest.API\publish
