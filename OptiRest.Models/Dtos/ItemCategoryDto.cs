@@ -12,7 +12,6 @@ namespace OptiRest.Models.Dtos
         public int Id { get; set; }
         public int TenantId { get; set; }
         public string Name { get; set; }
-        public int ParentCategoryId { get; set; }
-        public IEnumerable<Item> Items { get; set; }
+        public IEnumerable<Item>? Items { get; set; }
     }
 }

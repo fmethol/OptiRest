@@ -20,5 +20,7 @@ namespace OptiRest.Models.Dtos
         public bool Active { get; set; }
 
         public IEnumerable<TableService2Item>? TableService2Items { get; set; }
+        public ItemCategory? ItemCategory { get; set; }
+        public Kitchen? Kitchen { get; set; }
     }
 }

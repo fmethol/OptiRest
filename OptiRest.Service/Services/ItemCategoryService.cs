@@ -31,8 +31,7 @@ namespace OptiRest.Service.Services
             {
                 Id = itemCategoryDto.Id,
                 TenantId = itemCategoryDto.TenantId,
-                Name = itemCategoryDto.Name,
-                ParentCategoryId = itemCategoryDto.ParentCategoryId
+                Name = itemCategoryDto.Name
             };
 
             await _db.AddAsync(itemCategory);
@@ -72,7 +71,6 @@ namespace OptiRest.Service.Services
                 Id = itemCategory.Id,
                 TenantId = itemCategory.TenantId,
                 Name = itemCategory.Name,
-                ParentCategoryId = itemCategory.ParentCategoryId,
                 Items = itemCategory.Items
             };
 
@@ -88,7 +86,6 @@ namespace OptiRest.Service.Services
                     Id = i.Id,
                     TenantId = i.TenantId,
                     Name = i.Name,
-                    ParentCategoryId = i.ParentCategoryId,
                     Items = i.Items
                 }).ToListAsync();
 
@@ -113,7 +110,6 @@ namespace OptiRest.Service.Services
             itemCategory.Id = itemCategoryDto.Id;
             itemCategory.TenantId = itemCategoryDto.TenantId;
             itemCategory.Name = itemCategoryDto.Name;
-            itemCategory.ParentCategoryId = itemCategoryDto.ParentCategoryId;
 
             await _db.SaveChangesAsync();
 

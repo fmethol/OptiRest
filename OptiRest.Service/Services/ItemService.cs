@@ -62,7 +62,13 @@ namespace OptiRest.Service.Services
 
         public async Task<ItemDto> GetItem(int id)
         {
-            var item = _db.Items.FirstOrDefault(p => p.Id == id);
+            //var item = _db.Items.FirstOrDefault(p => p.Id == id);
+            var item = _db.Items.Include(i => i.ItemCategory).FirstOrDefault(p => p.Id == id);
+
+            if (item == null)
+            {
+                return null;
+            }
 
             var itemDto = new ItemDto
             {
@@ -74,16 +80,18 @@ namespace OptiRest.Service.Services
                 Title = item.Title,
                 Summary = item.Summary,
                 Price = item.Price,
-                Active = item.Active
+                Active = item.Active,
+                ItemCategory = item.ItemCategory,
+                Kitchen = _db.Kitchens.FirstOrDefault(k => k.Id == item.KitchenId),
             };
 
             return await Task.FromResult(itemDto);
 
         }
 
-        public async Task<IEnumerable<ItemDto>> GetItems()
+        public async Task<IEnumerable<ItemDto>> GetItems(int tenantId)
         {
-            var items = await _db.Items
+            var items = await _db.Items.Where(i => i.TenantId == tenantId)
                 .Select(p => new ItemDto
                 {
                     Id = p.Id,
@@ -94,7 +102,9 @@ namespace OptiRest.Service.Services
                     Title = p.Title,
                     Summary = p.Summary,
                     Price = p.Price,
-                    Active = p.Active
+                    Active = p.Active,
+                    //ItemCategory = p.ItemCategory,
+                    Kitchen = p.Kitchen
                 })
                 .ToListAsync();
 

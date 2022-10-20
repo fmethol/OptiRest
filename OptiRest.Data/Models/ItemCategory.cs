@@ -13,7 +13,6 @@ namespace OptiRest.Data.Models
         public int Id { get; set; }
         public int TenantId { get; set; }
         public string Name { get; set; }
-        public int ParentCategoryId { get; set; }
-        public ICollection<Item> Items { get; set; }
+        public ICollection<Item>? Items { get; set; }
     }
 }

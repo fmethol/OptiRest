@@ -12,7 +12,7 @@ namespace OptiRest.Service.Interfaces
         Task<int> DeleteItem(int id);
         Task<ItemDto> CreateItem(ItemDto item);
         Task<ItemDto> GetItem(int id);
-        Task<IEnumerable<ItemDto>> GetItems();
+        Task<IEnumerable<ItemDto>> GetItems(int tenantId);
         Task<ItemDto> UpdateItem(ItemDto request);
     }
 }
