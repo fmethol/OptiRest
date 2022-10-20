@@ -16,7 +16,7 @@ namespace OptiRest.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetItems(int tenantId)
+        public async Task<IActionResult> GetItems(int tenantId, int test)
         {
             var items = await _itemService.GetItems(tenantId);
 
