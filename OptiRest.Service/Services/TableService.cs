@@ -69,7 +69,7 @@ namespace OptiRest.Service.Services
 
         public async Task<TableDto> GetTable(int id)
         {
-            var table =  _db.Tables.Include(t => t.User).Include(t => t.Tenant).FirstOrDefault(t => t.Id == id);
+            var table =  _db.Tables.FirstOrDefault(t => t.Id == id);
 
             if (table == null)
             {
@@ -89,7 +89,7 @@ namespace OptiRest.Service.Services
                 PosX = table.PosX,
                 PosY = table.PosY,
                 UserId = table.UserId,
-                User = table.User,
+                User = _db.Users.FirstOrDefault(u => u.Id == table.UserId),
                 Tenant = _db.Tenants.Include(t => t.BusinessConfig).FirstOrDefault(t => t.Id == table.TenantId)
             };
 

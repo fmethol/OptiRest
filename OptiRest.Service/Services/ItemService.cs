@@ -103,8 +103,8 @@ namespace OptiRest.Service.Services
                     Summary = p.Summary,
                     Price = p.Price,
                     Active = p.Active,
-                    //ItemCategory = p.ItemCategory,
-                    Kitchen = p.Kitchen
+                    ItemCategory = _db.ItemCategories.FirstOrDefault(ic => ic.Id == p.ItemCategoryId),
+                    Kitchen = _db.Kitchens.FirstOrDefault(k => k.Id == p.KitchenId),
                 })
                 .ToListAsync();
 
