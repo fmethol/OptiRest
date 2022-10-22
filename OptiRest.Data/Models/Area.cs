@@ -17,7 +17,7 @@ namespace OptiRest.Data.Models
         public int Width { get; set; }
         public string Summary { get; set; }
 
-        public ICollection<Table> Tables { get; set; }
+        public ICollection<Table>? Tables { get; set; }
 
     }
 }
