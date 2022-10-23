@@ -96,9 +96,9 @@ namespace OptiRest.Service.Services
             return await Task.FromResult(tableDto);
         }
 
-        public async Task<IEnumerable<TableDto>> GetTables()
+        public async Task<IEnumerable<TableDto>> GetTables(int tenantId)
         {
-            var tables = await _db.Tables.ToListAsync();
+            var tables = await _db.Tables.Where(t => t.TenantId == tenantId).ToListAsync();
 
             if (tables == null)
             {

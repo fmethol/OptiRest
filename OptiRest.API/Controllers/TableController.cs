@@ -17,9 +17,9 @@ namespace OptiRest.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTables()
+        public async Task<IActionResult> GetTables(int tenantId)
         {
-            var tables = await _tableService.GetTables();
+            var tables = await _tableService.GetTables(tenantId);
             return Ok(tables);
         }
 
