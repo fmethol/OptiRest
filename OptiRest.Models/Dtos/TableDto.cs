@@ -19,7 +19,7 @@ namespace OptiRest.Models.Dtos
         public int StateId { get; set; }
         public int PosX { get; set; }
         public int PosY { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public User? User { get; set; }
         public Tenant? Tenant { get; set; }
