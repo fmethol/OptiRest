@@ -94,9 +94,9 @@ namespace OptiRest.Service.Services
 
         public async Task<IEnumerable<TableServiceDto>> GetTableServices(int tenantId, bool active = true)
         {
-            var tableServices = await _db.TableServices
+            var tableServices =  await _db.TableServices
                 .Where(ts => ts.TenantId == tenantId)
-                .Where(ts => ts.ServiceStateId == (active? 1 : ts.ServiceStateId))
+                .Where(ts => active ? ts.ServiceStateId < 4 : true)
                 .Select(ts => new TableServiceDto
                 {
                     Id = ts.Id,
@@ -109,8 +109,8 @@ namespace OptiRest.Service.Services
                     ServiceStart = ts.ServiceStart,
                     ServiceEnd = ts.ServiceEnd,
                     Items = _db.TableService2Items.Select(i => i.Item).ToList()
-                })
-                .ToListAsync();
+                }).ToListAsync();
+
 
             return tableServices;
 
