@@ -107,7 +107,8 @@ namespace OptiRest.Service.Services
                     UserId = ts.UserId,
                     ServiceStateId = ts.ServiceStateId,
                     ServiceStart = ts.ServiceStart,
-                    ServiceEnd = ts.ServiceEnd
+                    ServiceEnd = ts.ServiceEnd,
+                    Items = _db.TableService2Items.Select(i => i.Item).ToList()
                 })
                 .ToListAsync();
 
