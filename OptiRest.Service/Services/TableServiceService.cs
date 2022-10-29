@@ -45,6 +45,8 @@ namespace OptiRest.Service.Services
 
             tableServiceDto.Id = tableService.Id;
 
+            _db.Tables.FirstOrDefault(t => t.Id == tableServiceDto.TableId).StateId = 2;
+
             return tableServiceDto;
 
         }
@@ -90,10 +92,11 @@ namespace OptiRest.Service.Services
             return await Task.FromResult(tableServiceDto);
         }
 
-        public async Task<IEnumerable<TableServiceDto>> GetTableServices(int tenantId)
+        public async Task<IEnumerable<TableServiceDto>> GetTableServices(int tenantId, bool active = true)
         {
             var tableServices = await _db.TableServices
                 .Where(ts => ts.TenantId == tenantId)
+                .Where(ts => ts.ServiceStateId == (active? 1 : ts.ServiceStateId))
                 .Select(ts => new TableServiceDto
                 {
                     Id = ts.Id,

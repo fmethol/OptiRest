@@ -9,7 +9,7 @@ namespace OptiRest.Service.Interfaces
 {
     public interface ITableServiceService
     {
-        Task<IEnumerable<TableServiceDto>> GetTableServices(int tenantId);
+        Task<IEnumerable<TableServiceDto>> GetTableServices(int tenantId, bool active = true);
         Task<TableServiceDto> GetTableService(int id);
         Task<TableServiceDto> AddTableService(TableServiceDto tableServiceDto);
         Task<TableServiceDto> UpdateTableService(TableServiceDto tableServiceSto);

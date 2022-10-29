@@ -17,9 +17,9 @@ namespace OptiRest.API.Controllers
         }
 
         [HttpGet("byTenant/{tenantId:int}")]
-        public async Task<IActionResult> GetTableServices(int tenantId)
+        public async Task<IActionResult> GetTableServices(int tenantId, bool active = true)
         {
-            var tableServices = await _tableServiceService.GetTableServices(tenantId);
+            var tableServices = await _tableServiceService.GetTableServices(tenantId, active);
             return Ok(tableServices);
         }
 
