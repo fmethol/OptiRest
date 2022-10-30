@@ -26,6 +26,12 @@ namespace OptiRest.Service.Services
                 return null;
             }
 
+            // Validando si existe email
+            if (_db.DinerUsers.Any(x => x.Email == dinerUserDto.Email))
+            {
+                return null;
+            }
+
             var dinerUser = new DinerUser
             {
                 Id = dinerUserDto.Id,
