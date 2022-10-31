@@ -44,6 +44,12 @@ namespace OptiRest.API.Controllers
             }
 
             var newDinerUser = await _dinerUserService.AddDinerUser(dinerUserDto);
+
+            if (newDinerUser == null)
+            {
+                return BadRequest("EL Email ya fué registrado");
+            }
+            
             return Ok(newDinerUser);
         }
 
