@@ -34,5 +34,6 @@ namespace OptiRest.Data.Context
         public DbSet<ServiceItemState> ServiceItemStates{ get; set; }
         public DbSet<TableService2Item> TableService2Items { get; set; }
         public DbSet<Kitchen> Kitchens { get; set; }
+        public DbSet<ItemState> ItemStates { get; set; }
     }
 }

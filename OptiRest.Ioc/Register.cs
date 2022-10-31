@@ -32,6 +32,7 @@ namespace OptiRest.Ioc
             services.AddTransient<ITableService2ItemService, TableService2ItemService>();
             services.AddTransient<IKitchenService, KitchenService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IItemStateService, ItemStateService>();
 
         }
     }
