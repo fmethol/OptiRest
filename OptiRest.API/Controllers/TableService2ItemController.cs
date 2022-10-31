@@ -43,5 +43,12 @@ namespace OptiRest.API.Controllers
             var tableService2Item = await _tableService2ItemService.GetTableService2Item(id);
             return Ok(tableService2Item);
         }
+
+        [HttpGet("byTableService/")]
+        public async Task<IActionResult> GetTableService2Items(int tableServiceId)
+        {
+            var tableService2Items = await _tableService2ItemService.GetTableService2Items(tableServiceId);
+            return Ok(tableService2Items);
+        }
     }
 }

@@ -116,5 +116,24 @@ namespace OptiRest.Service.Services
 
             return tableService2ItemDto;
         }
+
+        public async Task<IEnumerable<TableService2ItemDto>> GetTableService2Items(int tableServiceId)
+        {
+            var tableService2Items = await _db.TableService2Items.Where(ts => ts.TableServiceId == tableServiceId).Select(ts => new TableService2ItemDto
+            {
+                Id = ts.Id,
+                TableServiceId = ts.TableServiceId,
+                ItemId = ts.ItemId,
+                Quantity = ts.Quantity,
+                Price = ts.Price,
+                OrderTime = ts.OrderTime,
+                DeliveryTime = ts.DeliveryTime,
+                ItemStateId = ts.ItemStateId
+            }).ToListAsync();
+
+            return tableService2Items;
+
+
+        }
     }
 }
