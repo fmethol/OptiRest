@@ -86,8 +86,8 @@ namespace OptiRest.Service.Services
                 ServiceStateId = tableService.ServiceStateId,
                 ServiceStart = tableService.ServiceStart,
                 ServiceEnd = tableService.ServiceEnd,
-                Items = _db.TableService2Items.Select(i => i.Item).ToList()
-        };
+                Items = _db.TableService2Items.Where(ts2i => ts2i.TableServiceId == tableService.Id).Select(ts2i => ts2i.Item).ToList()
+            };
  
             return await Task.FromResult(tableServiceDto);
         }

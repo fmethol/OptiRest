@@ -128,7 +128,8 @@ namespace OptiRest.Service.Services
                 Price = ts.Price,
                 OrderTime = ts.OrderTime,
                 DeliveryTime = ts.DeliveryTime,
-                ItemStateId = ts.ItemStateId
+                ItemStateId = ts.ItemStateId,
+                Item = _db.Items.FirstOrDefault(i => i.Id == ts.ItemId)
             }).ToListAsync();
 
             return tableService2Items;
