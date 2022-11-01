@@ -164,7 +164,9 @@ namespace OptiRest.Service.Services
                 Price = ts.Price,
                 OrderTime = ts.OrderTime,
                 DeliveryTime = ts.DeliveryTime,
-                ItemStateId = ts.ItemStateId
+                ItemStateId = ts.ItemStateId,
+                Item = ts.Item,
+                TableService = ts.TableService
             }).ToListAsync();
 
             return tableServiceItems;
@@ -181,7 +183,9 @@ namespace OptiRest.Service.Services
                 Price = ts.Price,
                 OrderTime = ts.OrderTime,
                 DeliveryTime = ts.DeliveryTime,
-                ItemStateId = ts.ItemStateId
+                ItemStateId = ts.ItemStateId,
+                Item = ts.Item,
+                TableService = ts.TableService
             }).ToListAsync();
 
             return tableServiceItems;
