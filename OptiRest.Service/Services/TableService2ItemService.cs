@@ -135,5 +135,56 @@ namespace OptiRest.Service.Services
 
 
         }
+
+        public async Task<IEnumerable<TableService2ItemDto>> GetAllItems(int tenantId)
+        {
+            var tableServiceItems = await _db.TableService2Items.Where(ts => ts.TableService.TenantId == tenantId).Select(ts => new TableService2ItemDto
+            {
+                Id = ts.Id,
+                TableServiceId = ts.TableServiceId,
+                ItemId = ts.ItemId,
+                Quantity = ts.Quantity,
+                Price = ts.Price,
+                OrderTime = ts.OrderTime,
+                DeliveryTime = ts.DeliveryTime,
+                ItemStateId = ts.ItemStateId
+            }).ToListAsync();
+
+            return tableServiceItems;
+        }
+
+        public async Task<IEnumerable<TableService2ItemDto>> GetInProgressItems(int tenantId)
+        {
+            var tableServiceItems = await _db.TableService2Items.Where(ts => ts.TableService.TenantId == tenantId && ts.ItemStateId < 4).Select(ts => new TableService2ItemDto
+            {
+                Id = ts.Id,
+                TableServiceId = ts.TableServiceId,
+                ItemId = ts.ItemId,
+                Quantity = ts.Quantity,
+                Price = ts.Price,
+                OrderTime = ts.OrderTime,
+                DeliveryTime = ts.DeliveryTime,
+                ItemStateId = ts.ItemStateId
+            }).ToListAsync();
+
+            return tableServiceItems;
+        }
+
+        public async Task<IEnumerable<TableService2ItemDto>> GetInProgressItemsbyKitchen(int kitchenId)
+        {
+            var tableServiceItems = await _db.TableService2Items.Where(ts => ts.Item.KitchenId == kitchenId && ts.ItemStateId < 4).Select(ts => new TableService2ItemDto
+            {
+                Id = ts.Id,
+                TableServiceId = ts.TableServiceId,
+                ItemId = ts.ItemId,
+                Quantity = ts.Quantity,
+                Price = ts.Price,
+                OrderTime = ts.OrderTime,
+                DeliveryTime = ts.DeliveryTime,
+                ItemStateId = ts.ItemStateId
+            }).ToListAsync();
+
+            return tableServiceItems;
+        }
     }
 }

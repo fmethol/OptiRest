@@ -13,7 +13,10 @@ namespace OptiRest.Service.Interfaces
         Task<int> DeleteTableService2Item(int id);
         Task<TableService2ItemDto> UpdateTableService2Item(TableService2ItemDto tableService2ItemDto);
         Task<TableService2ItemDto> GetTableService2Item(int id);
-
         Task<IEnumerable<TableService2ItemDto>> GetTableService2Items(int tableServiceId);
+        
+        Task<IEnumerable<TableService2ItemDto>> GetAllItems(int tenantId);
+        Task<IEnumerable<TableService2ItemDto>> GetInProgressItems(int tenantId);
+        Task<IEnumerable<TableService2ItemDto>> GetInProgressItemsbyKitchen(int kitchenId);
     }
 }
