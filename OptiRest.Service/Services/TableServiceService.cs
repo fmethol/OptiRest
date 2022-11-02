@@ -135,6 +135,12 @@ namespace OptiRest.Service.Services
             tableService.ServiceStart = tableServiceDto.ServiceStart;
             tableService.ServiceEnd = tableServiceDto.ServiceEnd;
 
+            if(tableServiceDto.ServiceStateId == 4)
+            {
+                var table = _db.Tables.FirstOrDefault(t => t.Id == tableServiceDto.TableId);
+                table.StateId = 5;
+            }
+
             await _db.SaveChangesAsync();
 
             return tableServiceDto;
