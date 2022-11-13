@@ -18,6 +18,7 @@ namespace OptiRest.Models.Dtos
         public string Summary { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
+        public string? Picture { get; set; }
 
         public IEnumerable<TableService2Item>? TableService2Items { get; set; }
         public ItemCategory? ItemCategory { get; set; }

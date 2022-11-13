@@ -20,6 +20,7 @@ namespace OptiRest.Data.Models
         public string Summary { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
+        public string? Picture { get; set; }
 
         [JsonIgnore]
         public IEnumerable<TableService2Item>? TableService2Items { get; set; }

@@ -32,7 +32,8 @@ namespace OptiRest.Service.Services
                 Title = itemDto.Title,
                 Summary = itemDto.Summary,
                 Price = itemDto.Price,
-                Active = itemDto.Active
+                Active = itemDto.Active,
+                Picture = itemDto.Picture,
             };
 
             await _db.AddAsync(item);
@@ -81,6 +82,7 @@ namespace OptiRest.Service.Services
                 Summary = item.Summary,
                 Price = item.Price,
                 Active = item.Active,
+                Picture = item.Picture,
                 ItemCategory = item.ItemCategory,
                 Kitchen = _db.Kitchens.FirstOrDefault(k => k.Id == item.KitchenId),
             };
@@ -103,6 +105,7 @@ namespace OptiRest.Service.Services
                     Summary = p.Summary,
                     Price = p.Price,
                     Active = p.Active,
+                    Picture = p.Picture,
                     ItemCategory = _db.ItemCategories.FirstOrDefault(ic => ic.Id == p.ItemCategoryId),
                     Kitchen = _db.Kitchens.FirstOrDefault(k => k.Id == p.KitchenId),
                 })
@@ -127,6 +130,7 @@ namespace OptiRest.Service.Services
             item.Summary = request.Summary;
             item.Price = request.Price;
             item.Active = request.Active;
+            item.Picture = request.Picture;
 
             await _db.SaveChangesAsync();
 
