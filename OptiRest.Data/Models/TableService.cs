@@ -19,6 +19,9 @@ namespace OptiRest.Data.Models
         public int ServiceStateId { get; set; }
         public DateTime ServiceStart { get; set; }
         public DateTime? ServiceEnd { get; set; }
+        public string? PaymentMethod { get; set; }
+        public string? PaymentReference { get; set; }
+        public string? Comment { get; set; }
 
         public IEnumerable<TableService2Item>? TableService2Items { get; set; }
 

@@ -37,7 +37,10 @@ namespace OptiRest.Service.Services
                 UserId = tableServiceDto.UserId,
                 ServiceStateId = tableServiceDto.ServiceStateId,
                 ServiceStart = tableServiceDto.ServiceStart,
-                ServiceEnd = tableServiceDto.ServiceEnd
+                ServiceEnd = tableServiceDto.ServiceEnd,
+                PaymentMethod = tableServiceDto.PaymentMethod,
+                PaymentReference = tableServiceDto.PaymentReference,
+                Comment = tableServiceDto.Comment,
             };
 
             _db.Tables.FirstOrDefault(t => t.Id == tableServiceDto.TableId).StateId = 2;
@@ -86,6 +89,9 @@ namespace OptiRest.Service.Services
                 ServiceStateId = tableService.ServiceStateId,
                 ServiceStart = tableService.ServiceStart,
                 ServiceEnd = tableService.ServiceEnd,
+                PaymentMethod = tableService.PaymentMethod,
+                PaymentReference = tableService.PaymentReference,
+                Comment = tableService.Comment,
                 Items = _db.TableService2Items.Where(ts2i => ts2i.TableServiceId == tableService.Id).Select(ts2i => ts2i.Item).ToList()
             };
  
@@ -134,8 +140,11 @@ namespace OptiRest.Service.Services
             tableService.ServiceStateId = tableServiceDto.ServiceStateId;
             tableService.ServiceStart = tableServiceDto.ServiceStart;
             tableService.ServiceEnd = tableServiceDto.ServiceEnd;
-
-            if(tableServiceDto.ServiceStateId == 4)
+            tableService.PaymentMethod = tableServiceDto.PaymentMethod;
+            tableService.PaymentReference = tableServiceDto.PaymentReference;
+            tableService.Comment = tableServiceDto.Comment;
+            
+            if (tableServiceDto.ServiceStateId == 4)
             {
                 var table = _db.Tables.FirstOrDefault(t => t.Id == tableServiceDto.TableId);
                 table.StateId = 5;
