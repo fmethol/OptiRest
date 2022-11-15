@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OptiRest.Data.Context;
+using OptiRest.Data.Migrations;
 using OptiRest.Data.Models;
 using OptiRest.Models.Dtos;
 using OptiRest.Service.Interfaces;
@@ -22,14 +23,15 @@ namespace OptiRest.Service.Services
 
         public async Task<IEnumerable<KitchenDto>> GetKitchens(int tenantId)
         {
-            var kitchens = await _db.Kitchens
+            var kitchens = await _db.Kitchens.Include(k => k.Users)
                 .Where(k => k.TenantId == tenantId)
                 .Select(k => new KitchenDto
                 {
                     Id = k.Id,
                     TenantId = k.TenantId,
                     Name = k.Name,
-                    Summary = k.Summary
+                    Summary = k.Summary,
+                    Users = k.Users.ToList()
                 })
                 .ToListAsync();
 
