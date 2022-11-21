@@ -191,5 +191,20 @@ namespace OptiRest.Service.Services
 
             return tableServiceItems;
         }
+
+        public async Task<int> DeleteTableService2ItemByTableServiceIdAndItemId(int tableServiceId, int itemId)
+        {
+            var tableService2Item = _db.TableService2Items.FirstOrDefault(i => i.TableServiceId == tableServiceId && i.ItemId == itemId);
+
+            if (tableService2Item == null)
+            {
+                return 0;
+            }
+
+            _db.TableService2Items.Remove(tableService2Item);
+            await _db.SaveChangesAsync();
+
+            return tableService2Item.Id;
+        }
     }
 }

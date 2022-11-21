@@ -37,6 +37,14 @@ namespace OptiRest.API.Controllers
             return Ok(tableService2Item);
         }
 
+        [HttpDelete("byTableServiceIdAndItemId")]
+        public async Task<IActionResult> DeleteTableService2ItemByTableServiceIdAndItemId(int tableServiceId, int itemId)
+        {
+            var tableService2Item = await _tableService2ItemService.DeleteTableService2ItemByTableServiceIdAndItemId(tableServiceId, itemId);
+            return Ok(tableService2Item);
+        }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTableService2Item(int id)
         {
