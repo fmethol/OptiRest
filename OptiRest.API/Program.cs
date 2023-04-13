@@ -34,6 +34,7 @@ internal class Program
 
 
         var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+        //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         Register.RegisterServices(builder.Services, connectionString);
 
         var app = builder.Build();
